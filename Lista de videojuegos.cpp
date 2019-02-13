@@ -8,6 +8,7 @@ struct Nodo{
 	string genero;
 	int costo;
 	Nodo *sig;
+	Nodo *ant;
 };
 
 void insertarElemento(Nodo *&lista, string nombre, string genero, int costo);
@@ -15,7 +16,7 @@ void imprimirElementos(Nodo *lista);
 void buscarElementos(Nodo *lista, string nombre, string genero, int costo);
 void eliminarElementos(Nodo *&lista, string nombre);
 void anularElementos(Nodo *&lista, string &nombre, string &genero, int &costo);
-void buscarPrimero(Nodo *lista);
+void buscarPrimero(Nodo *&lista);
 
 int main(){
 	//Declaraciones para el menu
@@ -35,6 +36,10 @@ int main(){
 		cout << "°\t[3]. Buscar elemento en la lista por (nombre)." << endl;
 		cout << "°\t[4]. Eliminar elemento de la lista." << endl;
 		cout << "°\t[5]. Anular la lista. (Borrar todo)" << endl;
+		cout << "°\t[6]. Retornar e imprimir el primer valor de la lista" << endl;
+		cout << "°\t[7]. Antes [->]" << endl;
+		cout << "°\t[8]. Despues [<-]" << endl;
+		cout << "°\t[7]. Recuperar la posicion del elemento en la lista" << endl;
 		cout << "°\t[X ENTERO] salir" << endl;
 		cout << "°\t/////////////////////////////////////////////" << endl;
 		cout << "°\n\tIndique que es lo que quiere hacer: ";
@@ -42,9 +47,9 @@ int main(){
 	
 		switch(opcion) {
 		case 1:
-			cout << "\n\n\tDigite un Nombre: "; /**/ cin >> nombre;
-			cout << "\n\n\tDigite un Genero: "; /**/ cin >> genero;
-			cout << "\n\n\tDigite un Costo: "; /**/ cin >> costo;
+			cout << "\n\tDigite un Nombre: "; /**/ cin >> nombre;
+			cout << "\n\tDigite un Genero: "; /**/ cin >> genero;
+			cout << "\n\tDigite un Costo: "; /**/ cin >> costo;
 			insertarElemento(lista, nombre,genero,costo);
 			system("CLS");
 			cout << "\n°°°°°Actividad reciente°°°°°\tEl elemento " << nombre << " ha sido insertado correctamente\n" << endl;
@@ -89,7 +94,15 @@ int main(){
 			break;
 			
 		default:
-			close = 0;
+			cout << "Estas seguro de que quiere salir?? // SI = 0 // NO = 1 // :";
+			int final;
+			cin >> final;
+			if(final == 0){
+				close = 0;
+			}else{
+				close = 1;
+				system("CLS");
+			}
 			break;
 		}
 	}
@@ -131,17 +144,13 @@ void imprimirElementos(Nodo *lista){
 	}
 }
 
-void buscarPrimero(Nodo *lista){
+void buscarPrimero(Nodo *&lista){
 	for(int i = 1; i <= 1; i++){
-		Nodo *actual = new Nodo();
-		actual = lista;
-		while(actual != NULL){
-			cout << "\t °°°Nombre: " << actual -> nombre << endl;
-			cout << "\t °°°Genero: " << actual -> genero << endl;
-			cout << "\t °°°Costo: " << actual -> costo << endl;
-			cout <<"////////////////////////////////////////////\n";
-			actual = actual -> sig;
-		}
+		Nodo *aux = lista;
+		cout << "\t °°°Nombre: " << aux -> nombre << endl;
+		cout << "\t °°°Genero: " << aux -> genero << endl;
+		cout << "\t °°°Costo: " << aux -> costo << endl;
+		cout <<"////////////////////////////////////////////\n";
 	}
 }
 
