@@ -12,9 +12,10 @@ struct Nodo{
 
 void insertarElemento(Nodo *&lista, string nombre, string genero, int costo);
 void imprimirElementos(Nodo *lista);
-void buscarElementos(Nodo *lista, string nombre, string genero, int cosoto);
+void buscarElementos(Nodo *lista, string nombre, string genero, int costo);
 void eliminarElementos(Nodo *&lista, string nombre);
-void anularElementos();
+void anularElementos(Nodo *&lista, string &nombre, string &genero, int &costo);
+void buscarPrimero(Nodo *lista);
 
 int main(){
 	//Declaraciones para el menu
@@ -71,6 +72,21 @@ int main(){
 			system("CLS");
 			cout << "\n°°°°°Actividad reciente°°°°°\tElemento " << nombre << " fue eliminado.\n" << endl;
 			break;
+		case 5:
+			cout << "°°°°°°\tBorrar toda la lista" << endl;
+			anularElementos(lista,nombre,genero,costo);
+			system("pause");
+			system("CLS");
+			cout << "\n°°°°°Actividad reciente°°°°°\tToda la lista ha sido eliminada.\n" << endl;
+			break;
+			
+		case 6:
+			cout << "°°°°°°\tBuscar el primer elemento" << endl;
+			buscarPrimero(lista);
+			system("pause");
+			system("CLS");
+			cout << "\n°°°°°Actividad reciente°°°°°\tEl primer elemento ha sido impreso.\n" << endl;
+			break;
 			
 		default:
 			close = 0;
@@ -115,6 +131,20 @@ void imprimirElementos(Nodo *lista){
 	}
 }
 
+void buscarPrimero(Nodo *lista){
+	for(int i = 1; i <= 1; i++){
+		Nodo *actual = new Nodo();
+		actual = lista;
+		while(actual != NULL){
+			cout << "\t °°°Nombre: " << actual -> nombre << endl;
+			cout << "\t °°°Genero: " << actual -> genero << endl;
+			cout << "\t °°°Costo: " << actual -> costo << endl;
+			cout <<"////////////////////////////////////////////\n";
+			actual = actual -> sig;
+		}
+	}
+}
+
 void buscarElementos(Nodo *lista, string nombre, string genero, int costo){
 	Nodo *actual = new Nodo();
 	actual = lista;
@@ -151,3 +181,14 @@ void eliminarElementos(Nodo *&lista, string nombre){
 		}
 	}
 }
+
+void anularElementos(Nodo *&lista, string &nombre, string &genero, int &costo){
+	Nodo *aux = lista;
+	nombre = aux -> nombre;
+	genero = aux -> genero;
+	costo = aux -> costo;
+	
+	lista = aux -> sig;
+	delete aux;
+}
+
