@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//Estructura básica
 struct Nodo{
 	string nombre;
 	string genero;
@@ -11,6 +12,7 @@ struct Nodo{
 	Nodo *ant;
 };
 
+//Prototipado de las funciones y declaraciones de parametros
 void insertarElemento(Nodo *&lista, string nombre, string genero, int costo);
 void imprimirElementos(Nodo *lista);
 void recuperaElementos(Nodo *lista, string nombre, string genero, int costo);
@@ -218,12 +220,14 @@ void eliminarElementos(Nodo *&lista, string nombre){
 }
 
 void anularElementos(Nodo *&lista, string &nombre, string &genero, int &costo){
-	Nodo *aux = lista;
-	nombre = aux -> nombre;
-	genero = aux -> genero;
-	costo = aux -> costo;
+	while(lista != NULL){
+		Nodo *aux = lista;
+		nombre = aux -> nombre;
+		genero = aux -> genero;
+		costo = aux -> costo;
 	
-	lista = aux -> sig;
-	delete aux;
+		lista = aux -> sig;
+		delete aux;
+	}
 }
 
