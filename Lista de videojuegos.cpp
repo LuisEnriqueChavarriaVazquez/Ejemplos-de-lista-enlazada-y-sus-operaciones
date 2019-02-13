@@ -8,14 +8,13 @@ struct Nodo{
 	string genero;
 	int costo;
 	Nodo *sig;
-	Nodo *ant;
 };
 
 void insertarElemento(Nodo *&lista, string nombre, string genero, int costo);
 void imprimirElementos(Nodo *lista);
 void buscarElementos(Nodo *lista, string nombre, string genero, int cosoto);
+void eliminarElementos(Nodo *&lista, string nombre);
 void anularElementos();
-void eliminarElementos();
 
 int main(){
 	//Declaraciones para el menu
@@ -32,8 +31,9 @@ int main(){
 		cout << "°\t/////////////////////////////////////////////" << endl;
 		cout << "°\t[1]. Insertar un elemento." << endl;
 		cout << "°\t[2]. Imprimir la lista." << endl;
-		cout << "°\t[3]. Eliminar elemento de la lista." << endl;
-		cout << "°\t[4]. Anular la lista. (Borrar todo)" << endl;
+		cout << "°\t[3]. Buscar elemento en la lista por (nombre)." << endl;
+		cout << "°\t[4]. Eliminar elemento de la lista." << endl;
+		cout << "°\t[5]. Anular la lista. (Borrar todo)" << endl;
 		cout << "°\t[X ENTERO] salir" << endl;
 		cout << "°\t/////////////////////////////////////////////" << endl;
 		cout << "°\n\tIndique que es lo que quiere hacer: ";
@@ -62,6 +62,14 @@ int main(){
 			system("pause");
 			system("CLS");
 			cout << "\n°°°°°Actividad reciente°°°°°\tElemento " << nombre << " estuvo en proceso de busqueda.\n" << endl;
+			break;
+		case 4:
+			cout << "°°°°°°\tBorrar un elemento" << endl;
+			cout << "°°°°°°\tDanos el nombre del juego que buscas: "; cin >> nombre;
+			eliminarElementos(lista,nombre);
+			system("pause");
+			system("CLS");
+			cout << "\n°°°°°Actividad reciente°°°°°\tElemento " << nombre << " fue eliminado.\n" << endl;
 			break;
 			
 		default:
@@ -118,5 +126,28 @@ void buscarElementos(Nodo *lista, string nombre, string genero, int costo){
 			cout <<"////////////////////////////////////////////\n";
 		}
 		actual = actual -> sig;
+	}
+}
+
+void eliminarElementos(Nodo *&lista, string nombre){
+	if(lista != NULL){
+		Nodo *aux_borrar;
+		Nodo *ant = NULL;
+		aux_borrar = lista; 
+	
+		while((aux_borrar != NULL) && (aux_borrar->nombre != nombre)){
+			ant = aux_borrar;
+			aux_borrar = aux_borrar -> sig;
+		}
+	
+		if(aux_borrar == NULL){
+			cout <<"\t°°°°°Este elemento no existe" << endl;
+		}else if(ant == NULL){
+			lista = lista -> sig;
+			delete aux_borrar;
+		}else{
+			ant -> sig = aux_borrar ->sig;
+			delete aux_borrar;
+		}
 	}
 }
