@@ -13,10 +13,11 @@ struct Nodo{
 
 void insertarElemento(Nodo *&lista, string nombre, string genero, int costo);
 void imprimirElementos(Nodo *lista);
-void buscarElementos(Nodo *lista, string nombre, string genero, int costo);
+void recuperaElementos(Nodo *lista, string nombre, string genero, int costo);
 void eliminarElementos(Nodo *&lista, string nombre);
 void anularElementos(Nodo *&lista, string &nombre, string &genero, int &costo);
 void buscarPrimero(Nodo *&lista);
+void localizarElemento(Nodo *lista, string nombre);
 
 int main(){
 	//Declaraciones para el menu
@@ -33,13 +34,13 @@ int main(){
 		cout << "°\t/////////////////////////////////////////////" << endl;
 		cout << "°\t[1]. Insertar un elemento." << endl;
 		cout << "°\t[2]. Imprimir la lista." << endl;
-		cout << "°\t[3]. Buscar elemento en la lista por (nombre)." << endl;
+		cout << "°\t[3]. Buscar (recuperar) elemento en la lista por (nombre)." << endl;
 		cout << "°\t[4]. Eliminar elemento de la lista." << endl;
 		cout << "°\t[5]. Anular la lista. (Borrar todo)" << endl;
 		cout << "°\t[6]. Retornar e imprimir el primer valor de la lista" << endl;
-		cout << "°\t[7]. Antes [->]" << endl;
-		cout << "°\t[8]. Despues [<-]" << endl;
-		cout << "°\t[7]. Recuperar la posicion del elemento en la lista" << endl;
+		cout << "°\t[7]. Localizar la posicion del elemento en la lista" << endl;
+		cout << "°\t[8]. Antes [->]" << endl;
+		cout << "°\t[9]. Despues [<-]" << endl;
 		cout << "°\t[X ENTERO] salir" << endl;
 		cout << "°\t/////////////////////////////////////////////" << endl;
 		cout << "°\n\tIndique que es lo que quiere hacer: ";
@@ -64,7 +65,7 @@ int main(){
 		case 3:
 			cout << "°°°°°°\tBusqueda de elemento" << endl;
 			cout << "°°°°°°\tDanos el nombre del juego que buscas: "; cin >> nombre;
-			buscarElementos(lista,nombre,genero,costo);
+			recuperaElementos(lista,nombre,genero,costo);
 			system("pause");
 			system("CLS");
 			cout << "\n°°°°°Actividad reciente°°°°°\tElemento " << nombre << " estuvo en proceso de busqueda.\n" << endl;
@@ -92,6 +93,17 @@ int main(){
 			system("CLS");
 			cout << "\n°°°°°Actividad reciente°°°°°\tEl primer elemento ha sido impreso.\n" << endl;
 			break;
+		/*case 7:
+			cout << "°°°°°°\tRetornar direccion del elemento\n" << endl;
+			localizarElemento(lista,nombre);
+			system("pause");
+			system("CLS");
+			cout << "\n°°°°°Actividad reciente°°°°°\tEl direccion del elemento " << nombre << " ha sido retornada.\n" << endl;
+			break;*/
+			
+			/*case 8:
+				antes
+				break;*/
 			
 		default:
 			cout << "Estas seguro de que quiere salir?? // SI = 0 // NO = 1 // :";
@@ -154,7 +166,7 @@ void buscarPrimero(Nodo *&lista){
 	}
 }
 
-void buscarElementos(Nodo *lista, string nombre, string genero, int costo){
+void recuperaElementos(Nodo *lista, string nombre, string genero, int costo){
 	Nodo *actual = new Nodo();
 	actual = lista;
 	while(actual != NULL){
@@ -167,6 +179,20 @@ void buscarElementos(Nodo *lista, string nombre, string genero, int costo){
 		actual = actual -> sig;
 	}
 }
+
+/*void localizarElemento(Nodo *lista,string nombre){
+	Nodo *actual = new Nodo();
+	actual = lista;
+	direccion = *lista;
+	while(actual != NULL){
+		if(actual -> nombre == nombre){
+			cout << "\t °°°Nombre: " << actual -> nombre << endl;
+			cout << "\t °°°Direccion elemento: " << actual -> &direccion << endl;
+			cout <<"////////////////////////////////////////////\n";
+		}
+		actual = actual -> sig;
+	}
+}*/
 
 void eliminarElementos(Nodo *&lista, string nombre){
 	if(lista != NULL){

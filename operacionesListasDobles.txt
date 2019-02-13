@@ -1,0 +1,8 @@
+Insertar [<]
+Localizar [<]
+Eliminar [<]
+anula [<]
+Recuperar
+siguiente y antes [<]
+primero [<]
+Imprime lista [<]
