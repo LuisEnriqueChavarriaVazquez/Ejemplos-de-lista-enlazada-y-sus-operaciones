@@ -14,12 +14,14 @@ struct Nodo{
 
 //Prototipado de las funciones y declaraciones de parametros
 void insertarElemento(Nodo *&lista, string nombre, string genero, int costo);
-void imprimirElementos(Nodo *lista);
+void imprimirElementos(Nodo *&lista);
 void recuperaElementos(Nodo *lista, string nombre, string genero, int costo);
 void eliminarElementos(Nodo *&lista, string nombre);
 void anularElementos(Nodo *&lista, string &nombre, string &genero, int &costo);
 void buscarPrimero(Nodo *&lista);
 void localizarElemento(Nodo *lista, string nombre);
+void despues(Nodo *&lista);
+void antes(Nodo *&lista);
 
 int main(){
 	//Declaraciones para el menu
@@ -32,7 +34,7 @@ int main(){
 	Nodo *lista = NULL;
 	
 	while(close){
-		cout << "°\tBienvenido a tu lista personal de videojuegos" << endl;
+		cout << "°\tBienvenido a tu WISHLIST de videojuegos." << endl;
 		cout << "°\t/////////////////////////////////////////////" << endl;
 		cout << "°\t[1]. Insertar un elemento." << endl;
 		cout << "°\t[2]. Imprimir la lista." << endl;
@@ -40,8 +42,8 @@ int main(){
 		cout << "°\t[4]. Eliminar elemento de la lista." << endl;
 		cout << "°\t[5]. Anular la lista. (Borrar todo)." << endl;
 		cout << "°\t[6]. Retornar e imprimir el primer valor de la lista." << endl;
-		cout << "°\t[7]. Antes [->]." << endl;
-		cout << "°\t[8]. Despues [<-]." << endl;
+		cout << "°\t[7]. Despues [<-X<-]." << endl;
+		cout << "°\t[8]. Antes [->X->]." << endl;
 		cout << "°\t[X ENTERO] salir." << endl;
 		cout << "°\t/////////////////////////////////////////////" << endl;
 		cout << "°\n\tIndique que es lo que quiere hacer: ";
@@ -94,17 +96,20 @@ int main(){
 			system("CLS");
 			cout << "\n°°°°°Actividad reciente°°°°°\tEl primer elemento ha sido impreso.\n" << endl;
 			break;
-		/*case 7:
-			cout << "°°°°°°\tRetornar direccion del elemento\n" << endl;
-			localizarElemento(lista,nombre);
+		case 7:
+			cout << "°°°°°°\tAntes y Despues\n" << endl;
+			despues(lista);
 			system("pause");
 			system("CLS");
-			cout << "\n°°°°°Actividad reciente°°°°°\tEl direccion del elemento " << nombre << " ha sido retornada.\n" << endl;
-			break;*/
-			
-			/*case 8:
-				antes
-				break;*/
+			cout << "\n°°°°°Actividad reciente°°°°°\tHemos impreso un elemento despues."<< endl;
+			break;
+		case 8:
+			cout << "°°°°°°\tAntes y Despues\n" << endl;
+			antes(lista);
+			system("pause");
+			system("CLS");
+			cout << "\n°°°°°Actividad reciente°°°°°\tHemos impreso un elemento antes."<< endl;
+			break;
 			
 		default:
 			cout << "Estas seguro de que quiere salir?? // SI = 0 // NO = 1 // :";
@@ -145,8 +150,9 @@ void insertarElemento(Nodo *&lista, string nombre, string genero, int costo){
 	nuevo_nodo->sig = aux1;
 }
 
-void imprimirElementos(Nodo *lista){
+void imprimirElementos(Nodo *&lista){
 	Nodo *actual = new Nodo();
+	Nodo *aux = lista;
 	actual = lista;
 	while(actual != NULL){
 		cout << "\t °°°Direccion: " << aux << endl;
@@ -183,20 +189,6 @@ void recuperaElementos(Nodo *lista, string nombre, string genero, int costo){
 	}
 }
 
-/*void localizarElemento(Nodo *lista,string nombre){
-	Nodo *actual = new Nodo();
-	actual = lista;
-	direccion = *lista;
-	while(actual != NULL){
-		if(actual -> nombre == nombre){
-			cout << "\t °°°Nombre: " << actual -> nombre << endl;
-			cout << "\t °°°Direccion elemento: " << actual -> &direccion << endl;
-			cout <<"////////////////////////////////////////////\n";
-		}
-		actual = actual -> sig;
-	}
-}*/
-
 void eliminarElementos(Nodo *&lista, string nombre){
 	if(lista != NULL){
 		Nodo *aux_borrar;
@@ -221,6 +213,7 @@ void eliminarElementos(Nodo *&lista, string nombre){
 }
 
 void anularElementos(Nodo *&lista, string &nombre, string &genero, int &costo){
+	
 	while(lista != NULL){
 		Nodo *aux = lista;
 		nombre = aux -> nombre;
@@ -230,5 +223,33 @@ void anularElementos(Nodo *&lista, string &nombre, string &genero, int &costo){
 		lista = aux -> sig;
 		delete aux;
 	}
+}
+
+void despues(Nodo *&lista){
+	Nodo *actual = new Nodo();
+	Nodo *aux = lista;
+	actual = lista;
+	
+	cout << "\n°°°°°Despues =>°°°°°" << endl;
+	while(actual != NULL){
+		cout << "[[Direccion: " << aux << "]";
+		cout << "[N: " << actual -> nombre << "]]->";
+		actual = actual -> sig;
+	}
+	cout << " [NULL]\n";
+}
+
+void antes(Nodo *&lista){
+	Nodo *actual = new Nodo();
+	Nodo *aux = lista;
+	actual = lista;
+	
+	cout << "\n°°°°°Antes <=°°°°°" << endl;
+	while(actual != NULL){
+		cout << "[[Direccion: " << aux << "]";
+		cout << "[N: " << actual -> nombre << "]]<-";
+		actual = actual -> sig;
+	}
+	cout << " [NULL]\n";
 }
 
