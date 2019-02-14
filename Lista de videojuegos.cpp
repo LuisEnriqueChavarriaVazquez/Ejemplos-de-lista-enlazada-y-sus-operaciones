@@ -36,14 +36,13 @@ int main(){
 		cout << "°\t/////////////////////////////////////////////" << endl;
 		cout << "°\t[1]. Insertar un elemento." << endl;
 		cout << "°\t[2]. Imprimir la lista." << endl;
-		cout << "°\t[3]. Buscar (recuperar) elemento en la lista por (nombre)." << endl;
+		cout << "°\t[3]. Buscar (recuperar y localizar) elemento en la lista por (nombre)." << endl;
 		cout << "°\t[4]. Eliminar elemento de la lista." << endl;
-		cout << "°\t[5]. Anular la lista. (Borrar todo)" << endl;
-		cout << "°\t[6]. Retornar e imprimir el primer valor de la lista" << endl;
-		cout << "°\t[7]. Localizar la posicion del elemento en la lista" << endl;
-		cout << "°\t[8]. Antes [->]" << endl;
-		cout << "°\t[9]. Despues [<-]" << endl;
-		cout << "°\t[X ENTERO] salir" << endl;
+		cout << "°\t[5]. Anular la lista. (Borrar todo)." << endl;
+		cout << "°\t[6]. Retornar e imprimir el primer valor de la lista." << endl;
+		cout << "°\t[7]. Antes [->]." << endl;
+		cout << "°\t[8]. Despues [<-]." << endl;
+		cout << "°\t[X ENTERO] salir." << endl;
 		cout << "°\t/////////////////////////////////////////////" << endl;
 		cout << "°\n\tIndique que es lo que quiere hacer: ";
 		cin >> opcion; 
@@ -150,6 +149,7 @@ void imprimirElementos(Nodo *lista){
 	Nodo *actual = new Nodo();
 	actual = lista;
 	while(actual != NULL){
+		cout << "\t °°°Direccion: " << aux << endl;
 		cout << "\t °°°Nombre: " << actual -> nombre << endl;
 		cout << "\t °°°Genero: " << actual -> genero << endl;
 		cout << "\t °°°Costo: " << actual -> costo << endl;
@@ -161,6 +161,7 @@ void imprimirElementos(Nodo *lista){
 void buscarPrimero(Nodo *&lista){
 	for(int i = 1; i <= 1; i++){
 		Nodo *aux = lista;
+		cout << "\t °°°Direccion: " << aux << endl;
 		cout << "\t °°°Nombre: " << aux -> nombre << endl;
 		cout << "\t °°°Genero: " << aux -> genero << endl;
 		cout << "\t °°°Costo: " << aux -> costo << endl;
